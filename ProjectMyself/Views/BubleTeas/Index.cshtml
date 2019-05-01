@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProjectMyself.Models.BubleTea>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Quản lý Trà Sữa</h2>
+
+<p>
+    @Html.ActionLink("Thêm trà sữa", "Create")
+</p>
+<table class="table table-bordered table-hover table-condensed">
+    <tr>
+        <th>
+            Tên Trà Sữa
+        </th>
+        <th>
+            Giá Trà Sữa
+        </th>
+        <th>
+            Thêm Hạt
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <mark>
+                @Html.DisplayFor(modelItem => item.Name)
+            </mark>
+        </td>
+        <td>
+            @item.Price.ToString("N0")
+        </td>
+        <td>
+            <pre>
+                @Html.DisplayFor(modelItem => item.Topping)
+            </pre>
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Thông tin", "Details", new { id=item.id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
